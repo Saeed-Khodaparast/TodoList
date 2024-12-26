@@ -1,0 +1,52 @@
+:root {
+  --color-primary: #2563eb;
+  --color-primary-dark: #184ec1;
+  --color-error: #dc2626;
+  --color-error-light: #ea4848;
+  --color-error-dark: #c11e1e;
+  --color-grey: #e5e7eb;
+  --color-grey-light: #f4f4f4;
+  --color-grey-dark: #bcbcbc;
+  --color-delete: var(--color-error);
+  --color-edit: #eab308;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+.container {
+  width: 90%;
+  max-width: 400px;
+  height: 100dvh;
+  padding-top: 16px;
+  overflow: hidden;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+button {
+  height: 40px;
+  padding: 12px 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--color-primary-dark);
+}

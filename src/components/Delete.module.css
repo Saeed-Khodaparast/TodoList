@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: stretch;
+  gap: 16px;
+  padding-bottom: 24px;
+}
+
+.btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-error);
+}
+
+.btn:hover {
+  background-color: var(--color-error-dark);
+}
