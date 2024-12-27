@@ -1,14 +1,14 @@
 import styles from "./Delete.module.css";
 
-function handleDoneClickListener() {
-  alert("Delete done tasks clicked!");
-}
+function Delete({ handleDelete }) {
+  function handleDoneClickListener() {
+    handleDelete();
+  }
 
-function handleAllClickListener() {
-  alert("Delete all tasks clicked!");
-}
+  function handleAllClickListener() {
+    handleDelete();
+  }
 
-function Delete() {
   return (
     <div className={styles.container}>
       <button className={styles.btn} onClick={handleDoneClickListener}>

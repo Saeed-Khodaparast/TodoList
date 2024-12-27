@@ -9,6 +9,12 @@
   --color-grey-dark: #bcbcbc;
   --color-delete: var(--color-error);
   --color-edit: #eab308;
+  --color-edit-dark: #e2aa02;
+}
+
+html,
+body {
+  overflow: hidden;
 }
 
 * {
@@ -18,23 +24,19 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html,
-body {
-  overflow: hidden;
-}
-
 .container {
-  width: 90%;
+  width: 100%;
   max-width: 400px;
   height: 100dvh;
   padding-top: 16px;
-  overflow: hidden;
   margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-y: hidden;
   gap: 8px;
+  position: relative;
 }
 
 button {

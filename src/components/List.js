@@ -2,7 +2,7 @@ import ListItem from "./ListItem";
 import styles from "./List.module.css";
 import { useState } from "react";
 
-function List({ tasks }) {
+function List({ tasks, editMode, doneTask, handleEditTask, handleDeleteTask }) {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const allTasks = tasks;
@@ -68,15 +68,39 @@ function List({ tasks }) {
       <ul>
         {selectedTab === 0 &&
           allTasks.map((task) => (
-            <ListItem key={task.id} text={task.text} done={task.done} />
+            <ListItem
+              id={task.id}
+              text={task.text}
+              done={task.done}
+              editMode={editMode}
+              doneTask={doneTask}
+              handleEditTask={handleEditTask}
+              handleDeleteTask={handleDeleteTask}
+            />
           ))}
         {selectedTab === 1 &&
           doneTasks.map((task) => (
-            <ListItem key={task.id} text={task.text} done={task.done} />
+            <ListItem
+              id={task.id}
+              text={task.text}
+              done={task.done}
+              editMode={editMode}
+              doneTask={doneTask}
+              handleEditTask={handleEditTask}
+              handleDeleteTask={handleDeleteTask}
+            />
           ))}
         {selectedTab === 2 &&
           todoTasks.map((task) => (
-            <ListItem key={task.id} text={task.text} done={task.done} />
+            <ListItem
+              id={task.id}
+              text={task.text}
+              done={task.done}
+              editMode={editMode}
+              doneTask={doneTask}
+              handleEditTask={handleEditTask}
+              handleDeleteTask={handleDeleteTask}
+            />
           ))}
       </ul>
     </div>
