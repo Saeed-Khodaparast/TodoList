@@ -1,42 +1,30 @@
 import { useState } from "react";
 import styles from "./Input.module.css";
+import editBoxIconBlack from "../images/ic-edit-box-black.svg";
+import editBoxIconWhite from "../images/ic-edit-box-white.svg";
+import clearIcon from "../images/ic-close.svg";
 
-function Input({ handleAddTask, editMode, taskToEdit, handEditText }) {
-  const [text, setText] = useState("");
-
-  function handleAddClickEvent(e) {
-    if (!text.trim()) {
-      setText("");
-      return;
-    }
-
-    if (editMode) {
-      handEditText(text);
-      return;
-    }
-
-    handleAddTask({ id: Date.now(), text: text, done: false });
-    setText("");
-  }
-
-  function handleClearClickEvent() {
-    setText("");
-  }
-
-  if (editMode) {
-    setText(taskToEdit.text);
+function Input({
+  text,
+  onChangeListener,
+  onAddEditListener,
+  editMode,
+  onClearListener,
+}) {
+  function handleAddEditListener(e) {
+    onAddEditListener({ id: Date.now(), text: text, done: false });
   }
 
   return (
-    <>
-      <h1 className={styles.title}>ToDoInput</h1>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <h2 className={styles.title}>ToDoInput</h2>
+      <div className={styles.innerContainer}>
         <div className={styles.inputContainer}>
           <img
             className={`${styles.startIcon} ${
-              editMode ? styles.startIconEdit : ""
+              editMode.isActive ? styles.startIconEdit : ""
             }`}
-            src={`{${process.env.PUBLIC_URL}/images/ic-edit-box.svg`}
+            src={editMode.isActive ? editBoxIconBlack : editBoxIconWhite}
             alt="todo-icon"
           />
           <input
@@ -44,23 +32,25 @@ function Input({ handleAddTask, editMode, taskToEdit, handEditText }) {
             type="text"
             placeholder="New Todo"
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={onChangeListener}
           />
           <img
             className={styles.clearIcon}
-            src={`{${process.env.PUBLIC_URL}/images/ic-close.svg`}
+            src={clearIcon}
             alt="clear-icon"
-            onClick={handleClearClickEvent}
+            onClick={onClearListener}
           />
         </div>
         <button
-          className={`${styles.button} ${editMode ? styles.buttonEdit : ""}`}
-          onClick={handleAddClickEvent}
+          className={`${styles.button} ${
+            editMode.isActive ? styles.buttonEdit : ""
+          }`}
+          onClick={handleAddEditListener}
         >
-          {editMode ? "Edit Task" : "Add new Task"}
+          {editMode.isActive ? "Edit Task" : "Add new Task"}
         </button>
       </div>
-    </>
+    </div>
   );
 }
 

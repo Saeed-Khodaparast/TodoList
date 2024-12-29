@@ -1,12 +1,15 @@
 import { useState } from "react";
 import styles from "./ListItem.module.css";
+import editIcon from "../images/ic-edit.svg";
+import deleteIcon from "../images/ic-delete.svg";
 
 function ListItem({
   id,
   text,
   done,
+  editMode,
   doneTask,
-  handleEditTask,
+  onEditListener,
   handleDeleteTask,
 }) {
   const [checked, setChecked] = useState(false);
@@ -17,7 +20,7 @@ function ListItem({
   }
 
   function handleEdit() {
-    handleEditTask({ id: id, text: text, done: done });
+    onEditListener({ id: id, text: text, done: done });
   }
 
   function handleDelete() {
@@ -39,16 +42,8 @@ function ListItem({
       >
         {text}{" "}
       </p>
-      <img
-        src={`{${process.env.PUBLIC_URL}/images/ic-edit.svg`}
-        alt="edit-icon"
-        onClick={handleEdit}
-      />
-      <img
-        src={`{${process.env.PUBLIC_URL}/images/ic-delete.svg`}
-        alt="delete-icon"
-        onClick={handleDelete}
-      />
+      <img src={editIcon} alt="edit-icon" onClick={handleEdit} />
+      <img src={deleteIcon} alt="delete-icon" onClick={handleDelete} />
     </li>
   );
 }

@@ -1,15 +1,17 @@
 :root {
-  --color-primary: #2563eb;
-  --color-primary-dark: #184ec1;
-  --color-error: #dc2626;
-  --color-error-light: #ea4848;
-  --color-error-dark: #c11e1e;
+  --color-primary: #427ff8;
+  --color-primary-dark: #3070f1;
+  --color-error: #ff4e4e;
+  --color-error-light: #fd5c5c;
+  --color-error-dark: #f73b3b;
   --color-grey: #e5e7eb;
   --color-grey-light: #f4f4f4;
   --color-grey-dark: #bcbcbc;
+  --color-title: #49494b;
   --color-delete: var(--color-error);
-  --color-edit: #eab308;
-  --color-edit-dark: #e2aa02;
+  --color-edit: #ffc30f;
+  --color-on-edit: #171717;
+  --color-edit-dark: #f6c125;
 }
 
 html,
@@ -25,18 +27,41 @@ body {
 }
 
 .container {
-  width: 100%;
+  width: 80%;
   max-width: 400px;
   height: 100dvh;
-  padding-top: 16px;
+  padding: 16px 0;
   margin: auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto 1fr auto;
   justify-content: center;
-  align-items: center;
+  align-content: start;
+  gap: 16px;
   overflow-y: hidden;
-  gap: 8px;
   position: relative;
+}
+
+.menuIcon {
+  position: absolute;
+  top: 20px;
+  cursor: pointer;
+}
+
+.sideBar {
+  width: 0;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #f2f2f2;
+  border-radius: 0 8px 8px 0;
+  z-index: 10;
+  transition: all 500ms ease;
+}
+.sideBar.open {
+  width: 50%;
 }
 
 button {
@@ -51,4 +76,23 @@ button {
 
 button:hover {
   background-color: var(--color-primary-dark);
+}
+
+@media (min-width: 992px) {
+  .container {
+    display: grid;
+    max-width: 1000px;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 8px 40px;
+    justify-content: center;
+  }
+
+  .menuIcon {
+    display: none;
+  }
+
+  .sideBar {
+    width: 300px;
+  }
 }

@@ -2,7 +2,7 @@ import ListItem from "./ListItem";
 import styles from "./List.module.css";
 import { useState } from "react";
 
-function List({ tasks, editMode, doneTask, handleEditTask, handleDeleteTask }) {
+function List({ tasks, editMode, doneTask, onEditListener, handleDeleteTask }) {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const allTasks = tasks;
@@ -10,20 +10,23 @@ function List({ tasks, editMode, doneTask, handleEditTask, handleDeleteTask }) {
   const todoTasks = tasks.filter((task) => !task.done);
 
   function handleAllTabClickListener() {
+    if (editMode.isActive) return;
     setSelectedTab(0);
   }
 
   function handleDoneTabClickListener() {
+    if (editMode.isActive) return;
     setSelectedTab(1);
   }
 
   function handleTodoTabClickListener() {
+    if (editMode.isActive) return;
     setSelectedTab(2);
   }
 
   return (
     <div className={styles.container}>
-      <h1>ToDoList</h1>
+      <h2 className={styles.title}>ToDoList</h2>
       <div className={styles.tabBar}>
         <button
           className={`${styles.tab} ${selectedTab === 0 ? styles.active : ""}`}
@@ -69,36 +72,39 @@ function List({ tasks, editMode, doneTask, handleEditTask, handleDeleteTask }) {
         {selectedTab === 0 &&
           allTasks.map((task) => (
             <ListItem
+              key={task.id}
               id={task.id}
               text={task.text}
               done={task.done}
               editMode={editMode}
               doneTask={doneTask}
-              handleEditTask={handleEditTask}
+              onEditListener={onEditListener}
               handleDeleteTask={handleDeleteTask}
             />
           ))}
         {selectedTab === 1 &&
           doneTasks.map((task) => (
             <ListItem
+              key={task.id}
               id={task.id}
               text={task.text}
               done={task.done}
               editMode={editMode}
               doneTask={doneTask}
-              handleEditTask={handleEditTask}
+              onEditListener={onEditListener}
               handleDeleteTask={handleDeleteTask}
             />
           ))}
         {selectedTab === 2 &&
           todoTasks.map((task) => (
             <ListItem
+              key={task.id}
               id={task.id}
               text={task.text}
               done={task.done}
               editMode={editMode}
               doneTask={doneTask}
-              handleEditTask={handleEditTask}
+              onEditListener={onEditListener}
               handleDeleteTask={handleDeleteTask}
             />
           ))}
